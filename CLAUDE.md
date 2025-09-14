@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a Spring Boot TODO application built with:
-- **Spring Boot 3.5.5** with Java 24
+- **Spring Boot 3.5.5** with Java 21
 - **Gradle Kotlin DSL** for build management
 - **Spring Data JPA** for data persistence with PostgreSQL
 - **Spring Security** for authentication and authorization
