@@ -2,6 +2,14 @@
 
 RESTful API para gerenciamento de tarefas (TODO) construída com Java 21 e Spring Boot 3, implementando autenticação JWT e controle de acesso baseado em roles.
 
+## 🚀 Demo em Produção
+
+**API Base URL**: https://spring-boot-todo-production.up.railway.app
+
+**Swagger UI**: [Documentação Interativa](https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html)
+
+> 💡 **Teste a API diretamente no Swagger UI em produção!**
+
 ## Principais Tecnologias
 
 - **Java 21**: Utilizando a versão LTS mais recente para recursos modernos da linguagem
@@ -134,12 +142,15 @@ src/main/java/com/example/springboottodo/
 
 ## Documentação da API
 
-### Swagger UI
-Acesse a documentação interativa da API em: `http://localhost:8080/swagger-ui/index.html`
+### 🌐 Produção (Railway)
+- **API Base URL**: https://spring-boot-todo-production.up.railway.app
+- **Swagger UI**: https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html
+- **OpenAPI JSON**: https://spring-boot-todo-production.up.railway.app/v3/api-docs
 
-### Endpoints OpenAPI
-- **JSON**: `http://localhost:8080/v3/api-docs`
-- **YAML**: `http://localhost:8080/v3/api-docs.yaml`
+### 💻 Desenvolvimento Local
+- **Swagger UI**: `http://localhost:8080/swagger-ui/index.html`
+- **OpenAPI JSON**: `http://localhost:8080/v3/api-docs`
+- **OpenAPI YAML**: `http://localhost:8080/v3/api-docs.yaml`
 
 ### Principais Endpoints
 
@@ -192,9 +203,11 @@ java -jar build/libs/spring-boot-todo-0.0.1-SNAPSHOT.jar
 ```
 
 ### Testando a API
+
+#### 🌐 Produção (Railway)
 ```bash
 # Registrar um usuário
-curl -X POST http://localhost:8080/api/auth/register \
+curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -204,7 +217,7 @@ curl -X POST http://localhost:8080/api/auth/register \
   }'
 
 # Fazer login
-curl -X POST http://localhost:8080/api/auth/login \
+curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -212,7 +225,7 @@ curl -X POST http://localhost:8080/api/auth/login \
   }'
 
 # Criar um TODO (usando o token recebido)
-curl -X POST http://localhost:8080/api/todos \
+curl -X POST https://spring-boot-todo-production.up.railway.app/api/todos \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <seu-jwt-token>" \
   -d '{
@@ -220,6 +233,12 @@ curl -X POST http://localhost:8080/api/todos \
     "description": "Descrição da tarefa",
     "completed": false
   }'
+```
+
+#### 💻 Local
+```bash
+# Substitua https://spring-boot-todo-production.up.railway.app por http://localhost:8080
+# nos comandos acima para testar localmente
 ```
 
 ## Variáveis de Ambiente
@@ -266,7 +285,13 @@ curl -X POST http://localhost:8080/api/todos \
 
 ## Deploy
 
-### Railway (Recomendado)
+### ✅ Railway (Em Produção)
+A API já está disponível em produção no Railway:
+- **URL**: https://spring-boot-todo-production.up.railway.app
+- **Status**: ✅ Ativa e funcionando
+- **Swagger UI**: [Acesse aqui](https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html)
+
+### 🚀 Deploy seu próprio
 1. Fork este repositório
 2. Conecte sua conta Railway ao GitHub
 3. Crie um novo projeto no Railway
