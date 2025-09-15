@@ -8,6 +8,10 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 description = "spring-boot-todo"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
 
 configurations {
     compileOnly {
