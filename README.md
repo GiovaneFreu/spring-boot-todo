@@ -4,9 +4,9 @@ RESTful API para gerenciamento de tarefas (TODO) construída com Java 21 e Sprin
 
 ## 🚀 Demo em Produção
 
-**API Base URL**: https://spring-boot-todo-production.up.railway.app
+**API Base URL**: https://spring-boot-todo-sw5k.onrender.com
 
-**Swagger UI**: [Documentação Interativa](https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html)
+**Swagger UI**: [Documentação Interativa](https://spring-boot-todo-sw5k.onrender.com/swagger-ui/index.html)
 
 > 💡 **Teste a API diretamente no Swagger UI em produção!**
 
@@ -142,10 +142,10 @@ src/main/java/com/example/springboottodo/
 
 ## Documentação da API
 
-### 🌐 Produção (Railway)
-- **API Base URL**: https://spring-boot-todo-production.up.railway.app
-- **Swagger UI**: https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html
-- **OpenAPI JSON**: https://spring-boot-todo-production.up.railway.app/v3/api-docs
+### 🌐 Produção (Render)
+- **API Base URL**: https://spring-boot-todo-sw5k.onrender.com
+- **Swagger UI**: https://spring-boot-todo-sw5k.onrender.com/swagger-ui/index.html
+- **OpenAPI JSON**: https://spring-boot-todo-sw5k.onrender.com/v3/api-docs
 
 ### 💻 Desenvolvimento Local
 - **Swagger UI**: `http://localhost:8080/swagger-ui/index.html`
@@ -204,10 +204,10 @@ java -jar build/libs/spring-boot-todo-0.0.1-SNAPSHOT.jar
 
 ### Testando a API
 
-#### 🌐 Produção (Railway)
+#### 🌐 Produção (Render)
 ```bash
 # Registrar um usuário
-curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/register \
+curl -X POST https://spring-boot-todo-sw5k.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -217,7 +217,7 @@ curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/registe
   }'
 
 # Fazer login
-curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/login \
+curl -X POST https://spring-boot-todo-sw5k.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -225,7 +225,7 @@ curl -X POST https://spring-boot-todo-production.up.railway.app/api/auth/login \
   }'
 
 # Criar um TODO (usando o token recebido)
-curl -X POST https://spring-boot-todo-production.up.railway.app/api/todos \
+curl -X POST https://spring-boot-todo-sw5k.onrender.com/api/todos \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <seu-jwt-token>" \
   -d '{
@@ -237,7 +237,7 @@ curl -X POST https://spring-boot-todo-production.up.railway.app/api/todos \
 
 #### 💻 Local
 ```bash
-# Substitua https://spring-boot-todo-production.up.railway.app por http://localhost:8080
+# Substitua https://spring-boot-todo-sw5k.onrender.com por http://localhost:8080
 # nos comandos acima para testar localmente
 ```
 
@@ -285,25 +285,26 @@ curl -X POST https://spring-boot-todo-production.up.railway.app/api/todos \
 
 ## Deploy
 
-### ✅ Railway (Em Produção)
-A API já está disponível em produção no Railway:
-- **URL**: https://spring-boot-todo-production.up.railway.app
+### ✅ Render (Em Produção)
+A API já está disponível em produção no Render:
+- **URL**: https://spring-boot-todo-sw5k.onrender.com
 - **Status**: ✅ Ativa e funcionando
-- **Swagger UI**: [Acesse aqui](https://spring-boot-todo-production.up.railway.app/swagger-ui/index.html)
+- **Swagger UI**: [Acesse aqui](https://spring-boot-todo-sw5k.onrender.com/swagger-ui/index.html)
 
 ### 🚀 Deploy seu próprio
 1. Fork este repositório
-2. Conecte sua conta Railway ao GitHub
-3. Crie um novo projeto no Railway
-4. Configure as variáveis de ambiente necessárias
-5. Deploy automático será executado
+2. Conecte sua conta Render ao GitHub
+3. Crie um novo Blueprint usando o arquivo `render.yaml`
+4. Revise os recursos `spring-boot-todo` e `spring-boot-todo-db`
+5. Deploy automático será executado a cada commit na branch `master`
 
 ### Docker
-```dockerfile
-FROM openjdk:21-jdk-slim
-COPY build/libs/spring-boot-todo-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+```bash
+docker build -t spring-boot-todo .
+docker run --rm -p 8080:8080 \
+  -e SPRING_PROFILES_ACTIVE=render \
+  -e DATABASE_URL=jdbc:postgresql://host.docker.internal:5432/todo_db \
+  spring-boot-todo
 ```
 
 ## Contribuindo
